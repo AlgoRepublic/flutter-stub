@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "321251234863",
+    "project_id": "bloc-base",
+    "storage_bucket": "bloc-base.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321251234863:android:e3886915e1a3e8abb862da",
+        "android_client_info": {
+          "package_name": "com.ar.base"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321251234863-99vfd42n4ngpge3fipg244uus7t5jgi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM23b0CPvaSPL5snuvG80YCOi5e4HsIZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321251234863-99vfd42n4ngpge3fipg244uus7t5jgi6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
