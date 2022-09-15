@@ -34,7 +34,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return BlocProvider(
+      create: (context) => LoginCubit(),
+      child:  GetMaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.getTheme(),

@@ -1,3 +1,4 @@
+import 'package:base_project/repositories/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -5,7 +6,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginInitial());
+  final AuthenticationRepository authenticationRepository;
+  LoginCubit(this.authenticationRepository) : super(LoginInitial());
+
+  Future<void> loginWithEmail(
+    String userName,
+    String email,
+    String password,
+  ) async {}
 
   Future<void> loginWithGoogle() async {
     try {
