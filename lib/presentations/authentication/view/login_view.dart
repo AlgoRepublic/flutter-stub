@@ -1,15 +1,16 @@
-import 'package:base_project/presentations/authentication/signup/signup.dart';
+import 'package:base_project/presentations/authentication/cubit/authentication_cubit_cubit.dart';
+import 'package:base_project/presentations/authentication/view/signup_view.dart';
+import 'package:base_project/presentations/home/home_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../../../../src/utils/global_constants.dart';
-import '../../../../src/utils/utils.dart';
-import '../../../widgets/button_widget.dart';
-import '../../../widgets/input_field_widget.dart';
-import '../../../widgets/social_button_widget.dart';
-import '../cubit/login_cubit.dart';
+import '../../../src/utils/global_constants.dart';
+import '../../../src/utils/utils.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/input_field_widget.dart';
+import '../../widgets/social_button_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -17,11 +18,13 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<LoginCubit, LoginState>(
+      body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
         listener: (context, state) {
-          if (state is AlertMsgState) {
-            Utils.showSnackBar(state.msg,
-                state.isForError ? SnackBarType.error : SnackBarType.success);
+          if (state is AlertMessageState) {
+            Utils.showSnackBar(
+              state.msg,
+              state.isForError ? SnackBarType.error : SnackBarType.success,
+            );
           }
         },
         builder: (context, state) {
@@ -76,7 +79,11 @@ class LoginView extends StatelessWidget {
                       SizedBox(
                         height: Get.height * 0.04,
                       ),
-                      const ButtonWidget(text: "Login"),
+                      InkWell(
+                          onTap: () {
+                            Get.to(() => HomeView());
+                          },
+                          child: const ButtonWidget(text: "Login")),
                       SizedBox(
                         height: Get.height * 0.04,
                       ),
@@ -109,7 +116,7 @@ class LoginView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          BlocProvider.of<LoginCubit>(context)
+                          BlocProvider.of<AuthenticationCubit>(context)
                               .loginWithGoogle();
                         },
                         child: const SocialButtonWidget(

@@ -1,4 +1,4 @@
-import 'package:base_project/repositories/network_client.dart';
+import 'package:base_project/src/utils/network_client.dart';
 
 class AuthenticationRepository {
   final NetworkClient networkClient;
@@ -7,11 +7,11 @@ class AuthenticationRepository {
   ///
   ///
   ///
-  Future<void> register(
-    String userName,
-    String email,
-    String password,
-  ) async {
+  Future<void> register({
+    required String userName,
+    required String email,
+    required String password,
+  }) async {
     final apiResponse = await networkClient.post(
       '/register',
       data: {
@@ -27,11 +27,11 @@ class AuthenticationRepository {
   ///
   ///
   ///
-  Future<void> login(
-    String userName,
-    String email,
-    String password,
-  ) async {
+  Future<void> login({
+    required String userName,
+    required String email,
+    required String password,
+  }) async {
     final apiResponse = await networkClient.post(
       '/login',
       data: {

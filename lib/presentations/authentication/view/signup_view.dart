@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../src/utils/global_constants.dart';
-import '../../../widgets/button_widget.dart';
-import '../../../widgets/input_field_widget.dart';
-import '../../../widgets/social_button_widget.dart';
-import '../../login/view/login_view.dart';
+import '../../../src/utils/global_constants.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/input_field_widget.dart';
+import '../../widgets/social_button_widget.dart';
+import 'login_view.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({Key? key}) : super(key: key);

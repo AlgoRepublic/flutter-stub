@@ -1,4 +1,7 @@
+import 'package:base_project/presentations/authentication/cubit/authentication_cubit_cubit.dart';
 import 'package:base_project/presentations/splash/splash_view.dart';
+import 'package:base_project/repositories/authentication_repository.dart';
+import 'package:base_project/src/utils/network_client.dart';
 import 'package:base_project/src/language/languages.dart';
 import 'package:base_project/src/language/locales.dart';
 import 'package:base_project/src/theme/theme.dart';
@@ -7,6 +10,7 @@ import 'package:base_project/src/utils/notifications_setup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -35,25 +39,36 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
-      child:  GetMaterialApp(
-      title: appTitle,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.getTheme(),
-      translations: Languages(),
-      locale: engLocale,
-      fallbackLocale: engLocale,
-      supportedLocales: const [
-        engLocale,
-        urLocale,
-      ],
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      home: const SplashView(),
+      create: (context) => AuthenticationCubit(
+        AuthenticationRepository(
+          NetworkClient(
+            getUserAuthToken: getUserToken,
+          ),
+        ),
+      ),
+      child: GetMaterialApp(
+        title: appTitle,
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.getTheme(),
+        translations: Languages(),
+        locale: engLocale,
+        fallbackLocale: engLocale,
+        supportedLocales: const [
+          engLocale,
+          urLocale,
+        ],
+        localizationsDelegates: const [
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        home: const SplashView(),
+      ),
     );
+  }
+
+  Future<String?> getUserToken() async {
+    return Future.value('');
   }
 }
 

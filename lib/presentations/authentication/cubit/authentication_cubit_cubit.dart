@@ -1,13 +1,15 @@
-import 'package:base_project/repositories/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-part 'login_state.dart';
+import '../../../repositories/authentication_repository.dart';
 
-class LoginCubit extends Cubit<LoginState> {
+part 'authentication_cubit_state.dart';
+
+class AuthenticationCubit extends Cubit<AuthenticationState> {
   final AuthenticationRepository authenticationRepository;
-  LoginCubit(this.authenticationRepository) : super(LoginInitial());
+  AuthenticationCubit(this.authenticationRepository)
+      : super(AuthenticationInitial());
 
   Future<void> loginWithEmail(
     String userName,
@@ -39,15 +41,16 @@ class LoginCubit extends Cubit<LoginState> {
         // "google",
         // );
         // return response;
-        emit(AlertMsgState(msg: "Login Successful", isForError: false));
+        emit(AlertMessageState(msg: "Login Successful", isForError: false));
       } else {
-        emit(AlertMsgState(msg: "Please try again later", isForError: true));
+        emit(
+            AlertMessageState(msg: "Please try again later", isForError: true));
       }
     } on Exception catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      emit(AlertMsgState(msg: e.toString(), isForError: true));
+      emit(AlertMessageState(msg: e.toString(), isForError: true));
     }
   }
 }

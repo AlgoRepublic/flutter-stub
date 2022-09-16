@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 
-import '../src/utils/global_constants.dart';
+import 'global_constants.dart';
 
 typedef GetUserAuthTokenCallback = Future<String?> Function();
 
