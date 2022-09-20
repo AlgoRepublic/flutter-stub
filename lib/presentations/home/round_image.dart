@@ -50,7 +50,7 @@ class RoundImage extends StatelessWidget {
                 image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    "assets/ysells_logo.png",
+                    "assets/ar.png",
                   ),
                 ),
               ),
@@ -64,7 +64,7 @@ class RoundImage extends StatelessWidget {
                 image: const DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage(
-                    "assets/ysells_logo.png",
+                    "assets/ar.png",
                   ),
                 ),
               ),

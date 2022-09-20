@@ -1,6 +1,6 @@
+import 'package:base_project/presentations/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../authentication/view/signup_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -19,17 +19,18 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).cardColor,
       body: Center(
-          child: Image.asset(
-        "assets/ysells_logo.png",
-        width: Get.width * 0.45,
-      )),
+        child: Image.asset(
+          "assets/ar.png",
+          width: Get.width * 0.45,
+        ),
+      ),
     );
   }
 
-  initializeApp() async {
+  Future<void> initializeApp() async {
     await Future.delayed(const Duration(seconds: 2));
-    Get.offAll(const SignupView());
+    Get.offAll(const HomeView());
   }
 }

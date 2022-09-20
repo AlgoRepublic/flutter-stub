@@ -19,6 +19,8 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        title: const Text('Dashboard'),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(
@@ -78,7 +80,7 @@ class HomeView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  // padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: const ImageSliderWidget(
                     bannerImages: ['assets/cover.png'],
                   ),
@@ -312,27 +314,27 @@ List<CategoryData> categoriesList = [
     name: 'Carpenter',
   ),
   CategoryData(
-    image: 'assets/accounting.png',
-    name: 'Accounting',
+    image: 'assets/ac.png',
+    name: 'AC Service',
   ),
   CategoryData(
-    image: 'assets/cleaning.png',
-    name: 'Cleaning',
+    image: 'assets/electricity.png',
+    name: 'Electricity',
   ),
   CategoryData(
-    image: 'assets/carpenter.png',
-    name: 'Carpenter',
+    image: 'assets/plumber.png',
+    name: 'Plumber',
   ),
   CategoryData(
-    image: 'assets/accounting.png',
-    name: 'Accounting',
+    image: 'assets/holes.png',
+    name: 'Holes',
   ),
   CategoryData(
-    image: 'assets/cleaning.png',
-    name: 'Cleaning',
+    image: 'assets/security.png',
+    name: 'Security',
   ),
   CategoryData(
-    image: 'assets/carpenter.png',
-    name: 'Carpenter',
+    image: 'assets/renovation.png',
+    name: 'Renovation',
   ),
 ];

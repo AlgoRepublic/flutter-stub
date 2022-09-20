@@ -225,11 +225,11 @@ class NetworkClient {
       case DioErrorType.response:
         final jsonResp = error.response!.data;
         final errorStr = jsonResp['error'] as String;
-        final message = jsonResp['message'] as String;
+        // final message = jsonResp['message'] as String;
         return ApiResponse<T>.error(
           statusCode: error.response?.statusCode,
           error: errorStr,
-          message: message,
+          message: null,
         );
       case DioErrorType.cancel:
         return ApiResponse<T>.error(

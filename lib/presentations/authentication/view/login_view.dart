@@ -1,6 +1,5 @@
 import 'package:base_project/presentations/authentication/cubit/authentication_cubit_cubit.dart';
 import 'package:base_project/presentations/authentication/view/signup_view.dart';
-import 'package:base_project/presentations/home/home_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,9 +11,24 @@ import '../../widgets/button_widget.dart';
 import '../../widgets/input_field_widget.dart';
 import '../../widgets/social_button_widget.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
 
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  ///
+  ///
+  ///
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  ///
+  ///
+  ///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +44,7 @@ class LoginView extends StatelessWidget {
         builder: (context, state) {
           return SafeArea(
             child: ModalProgressHUD(
-              inAsyncCall: state is ProcessingState,
+              inAsyncCall: state is AuthLoadingState,
               child: Container(
                 margin: const EdgeInsets.symmetric(
                     horizontal: hMargin, vertical: vMargin),
@@ -42,7 +56,7 @@ class LoginView extends StatelessWidget {
                         height: Get.height * 0.04,
                       ),
                       Image.asset(
-                        "assets/primary_logo.png",
+                        "assets/ar.png",
                         width: Get.width * 0.4,
                       ),
                       SizedBox(
@@ -58,15 +72,17 @@ class LoginView extends StatelessWidget {
                       SizedBox(
                         height: Get.height * 0.04,
                       ),
-                      const InputFieldWidget(
+                      InputFieldWidget(
                         hint: "Email",
+                        controller: emailController,
                       ),
                       SizedBox(
                         height: Get.height * 0.02,
                       ),
-                      const InputFieldWidget(
+                      InputFieldWidget(
                         hint: "Password",
                         obscure: true,
+                        controller: passwordController,
                       ),
                       SizedBox(
                         height: Get.height * 0.01,
@@ -81,7 +97,11 @@ class LoginView extends StatelessWidget {
                       ),
                       InkWell(
                           onTap: () {
-                            Get.to(() => HomeView());
+                            context.read<AuthenticationCubit>().loginWithEmail(
+                                  '',
+                                  emailController.text,
+                                  passwordController.text,
+                                );
                           },
                           child: const ButtonWidget(text: "Login")),
                       SizedBox(

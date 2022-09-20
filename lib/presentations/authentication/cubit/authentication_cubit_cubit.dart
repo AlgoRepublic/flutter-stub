@@ -10,16 +10,68 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   final AuthenticationRepository authenticationRepository;
   AuthenticationCubit(this.authenticationRepository)
       : super(AuthenticationInitial());
+  ////
+  ///
+  ///
+  ///
 
   Future<void> loginWithEmail(
     String userName,
     String email,
     String password,
-  ) async {}
+  ) async {
+    emit(AuthLoadingState());
+    final apiResponse = await authenticationRepository.login(
+      userName: userName,
+      email: email,
+      password: password,
+    );
+    if (apiResponse.isSuccess) {
+      emit(AuthSuccessState());
+    } else {
+      emit(
+        AlertMessageState(
+          msg: apiResponse.error ??
+              'Check your internet connection and try again',
+        ),
+      );
+    }
+  }
+
+  ///
+  ///
+  ///
+
+  Future<void> signupWithEmail(
+    String userName,
+    String email,
+    String password,
+  ) async {
+    emit(AuthLoadingState());
+    final apiResponse = await authenticationRepository.register(
+      userName: userName,
+      email: email,
+      password: password,
+    );
+    if (apiResponse.isSuccess) {
+      emit(AuthSuccessState());
+    } else {
+      emit(
+        AlertMessageState(
+          msg: apiResponse.error ??
+              'Check your internet connection and try again',
+        ),
+      );
+    }
+  }
+
+  ///
+  ///
+  ///
 
   Future<void> loginWithGoogle() async {
     try {
-      emit(ProcessingState());
+      emit(AuthLoadingState());
       final GoogleSignIn googleSignIn =
           GoogleSignIn(scopes: ['http://mail.google.com/']);
       if (await googleSignIn.isSignedIn()) {

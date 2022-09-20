@@ -5,7 +5,9 @@ abstract class AuthenticationState {}
 
 class AuthenticationInitial extends AuthenticationState {}
 
-class ProcessingState extends AuthenticationState {}
+class AuthLoadingState extends AuthenticationState {}
+
+class AuthSuccessState extends AuthenticationState {}
 
 class AlertMessageState extends AuthenticationState {
   final bool isForError;

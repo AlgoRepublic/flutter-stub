@@ -7,12 +7,12 @@ class AuthenticationRepository {
   ///
   ///
   ///
-  Future<void> register({
+  Future<ApiResponse<String>> register({
     required String userName,
     required String email,
     required String password,
   }) async {
-    final apiResponse = await networkClient.post(
+    final apiResponse = await networkClient.post<String>(
       '/register',
       data: {
         'username': userName,
@@ -21,18 +21,21 @@ class AuthenticationRepository {
       },
     );
     if (apiResponse.isSuccess) {
-    } else {}
+      return apiResponse.copyWith(data: apiResponse.rawData['token']);
+    } else {
+      return apiResponse;
+    }
   }
 
   ///
   ///
   ///
-  Future<void> login({
+  Future<ApiResponse<String>> login({
     required String userName,
     required String email,
     required String password,
   }) async {
-    final apiResponse = await networkClient.post(
+    final apiResponse = await networkClient.post<String>(
       '/login',
       data: {
         'username': userName,
@@ -41,6 +44,9 @@ class AuthenticationRepository {
       },
     );
     if (apiResponse.isSuccess) {
-    } else {}
+      return apiResponse.copyWith(data: apiResponse.rawData['token']);
+    } else {
+      return apiResponse;
+    }
   }
 }
