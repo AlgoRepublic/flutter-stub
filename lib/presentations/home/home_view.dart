@@ -1,15 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:base_project/presentations/home/round_image.dart';
+import 'package:base_project/presentations/widgets/round_image.dart';
 import 'package:base_project/src/theme/base_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import 'bottom_nav_bar/bottom_nav_bar.dart';
-import 'category_data.dart';
-import 'category_widget.dart';
-import 'image_slider_widget.dart';
+import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
+import '../widgets/category_data.dart';
+import '../widgets/category_widget.dart';
+import '../widgets/image_slider_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
